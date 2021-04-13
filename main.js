@@ -30,6 +30,7 @@ function buy(id){
     });
 }
 
+let catchCount = 0;
 function fetchMovieList(){
   axios
     .get('https://mock-api.bootcamp.respondeai.com.br/api/v2/moviefinder/filmes')
@@ -39,6 +40,8 @@ function fetchMovieList(){
     .catch((err)=>{
       console.log('error')
       console.log(err);
+      catchCount++;
+      if (catchCount === 5) return;
       fetchMovieList();
     });
 }
